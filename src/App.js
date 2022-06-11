@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+// import Header from "./Components/Layout/Header";
+// import MealSummary from "./Components/Meal/MealSummary";
+// import {CartTotalContextProvider} from './Store/cartTotal-context.js'
+
+import Header from "./Components/Layout/Header";
+import Meals from "./Components/Meal/Meals";
+import Cart from "./Components/Cart/Cart";
+import CartContextProvider from "./Store/CartContextProvider";
 
 function App() {
+  const[cartIsShown, setCartIsShown] = useState(false);
+  const showCartHandler = () => setCartIsShown(true);
+  const hideCartHandler = () => setCartIsShown(false);
+
+  // const [totalCount, setTotalCount] = useState(0);
+  //   const totalCountAdder = ()=>{
+  //       setTotalCount(()=>{
+  //           return totalCount+1;
+  //       })
+  //   }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <CartContextProvider>
+      {/* <Cart isDisplay={cartDisplay}/> */}
+      {cartIsShown && <Cart hideCart={hideCartHandler} />}
+      <Header showCart={showCartHandler}/>
+      <main>
+        <Meals />
+      </main>
+    </CartContextProvider>
   );
 }
 
