@@ -7,7 +7,7 @@ import cartTotalContext from '../../Store/cartTotal-context';
 
 function MealItem(props) {
   const cartCtx = useContext(cartTotalContext);
-  const price = `$${props.price.toFixed(2)}`;
+  const price = `₹${props.price.toFixed(2)}`;
 
   const addItemToCart = (amount) => {
     // console.log(props.name);
